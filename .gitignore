@@ -45,3 +45,4 @@ env/
 .env
 .modal*
 brca1_analysis_plot.png
+.idea/
