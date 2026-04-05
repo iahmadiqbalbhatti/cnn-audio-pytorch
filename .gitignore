@@ -27,12 +27,12 @@ pnpm-debug.log*
 *.mp4
 
 
-audio-cnn-visualisation/node_modules/
-audio-cnn-visualisation/.next/
-audio-cnn-visualisation/out/
-audio-cnn-visualisation/.env*.local
-audio-cnn-visualisation/*.tsbuildinfo
-audio-cnn-visualisation/next-env.d.ts
+audio-cnn-visualization/node_modules/
+audio-cnn-visualization/.next/
+audio-cnn-visualization/out/
+audio-cnn-visualization/.env*.local
+audio-cnn-visualization/*.tsbuildinfo
+audio-cnn-visualization/next-env.d.ts
 
 __pycache__/
 *.pyc
