@@ -14,30 +14,14 @@ image = (modal.Image.debian_slim().pip_install_from_requirements("requirements.t
 
 volume = modal.Volume.from_name("esc50-data", create_if_missing=True)
 
-modal_volume = modal.Volume.from_name("esc-model", create_if_missing=True)
+model_volume = modal.Volume.from_name("esc-model", create_if_missing=True)
 
 
 @app.function()
-def f(i):
-    if i % 2 == 0:
-        print("hello", i)
-    else:
-        print("world", i, file=sys.stderr)
+def train(image=image, gpu="T4", volumes= {"/data":volume, "/models":model_volume}, timeout=3600):
+    print("Training model...")
 
-    return i * i
 
 @app.local_entrypoint()
 def main():
-    # run the function locally
-    print(f.local(10))
-
-    # run the function remotely on Modal
-    print(f.remote(10))
-
-    # run the function in parallel and remotely on Modal
-    total = 0
-    for ret in f.map(range(10)):
-        total += ret
-
-    print(total)
-
+    train.remote()
