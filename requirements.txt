@@ -1,0 +1,8 @@
+torch
+numpy
+pandas
+torchaudio
+soundfile
+modal
+tqdm
+tensorboard
