@@ -6,3 +6,8 @@ soundfile
 modal
 tqdm
 tensorboard
+fastapi
+librosa
+pydantic
+soundfile
+requests
