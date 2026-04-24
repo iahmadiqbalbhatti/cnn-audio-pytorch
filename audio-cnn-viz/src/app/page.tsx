@@ -1,11 +1,10 @@
 "use client";
-import { Car } from "@phosphor-icons/react";
 import { useState } from "react";
 import ColorScale from "~/components/ColorScale";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import FeatureMap from "~/components/ui/FeatureMap";
+import FeatureMap from "~/components/FeatureMap";
 import { Progress } from "~/components/ui/progress";
 import { env } from "~/env";
 import type { ApiResponse } from "~/lib/types";
@@ -69,7 +68,6 @@ export default function HomePage() {
       setIsLoading(false);
     };
   };
-
 
   const { main, internals } = (vizData
     ? splitLayers(vizData.visualizations)
@@ -169,26 +167,6 @@ export default function HomePage() {
                       <ColorScale width={200} height={16} min={-1} max={1} />
                     </CardContent>
                   </Card>
-                </div>
-                {/* <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                  <Card>
-                    <CardHeader className="text-stone-900">
-                      <CardTitle className="text-stone-900">
-                        Input Spectrogram
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <FeatureMap
-                        data={vizData.input_spectrogram.values}
-                        title={`${vizData.input_spectrogram.shape.join(" x ")}`}
-                        spectrogram
-                      />
-
-                      <div className="mt-5 flex justify-end">
-                        <ColorScale width={200} height={16} min={-1} max={1} />
-                      </div> 
-                    </CardContent>
-                  </Card>
                   <Card>
                     <CardHeader>
                       <CardTitle className="text-stone-900">
@@ -196,13 +174,41 @@ export default function HomePage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <Waveform
+                      {/* <Waveform
                         data={vizData.waveform.values}
                         title={`${vizData.waveform.duration.toFixed(2)}s * ${vizData.waveform.sample_rate}Hz`}
-                      />
+                      /> */}
                     </CardContent>
                   </Card>
-                </div> */}
+                </div>
+                {/* Feature maps */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Convolutional Layer Outputs</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-5 gap-6">
+                      {Object.entries(main).map(([mainName, mainData]) => (
+                        <div key={mainName} className="space-y-4">
+                          <div>
+                            <h4 className="mb-2 font-medium text-stone-700">
+                              {mainName}
+                            </h4>
+                            {mainData && (
+                              <FeatureMap
+                                data={mainData.values}
+                                title={`${mainData.shape.join(" x ")}`}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-5 flex justify-end">
+                      <ColorScale width={200} height={16} min={-1} max={1} />
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             )}
           </div>

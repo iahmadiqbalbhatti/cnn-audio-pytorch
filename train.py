@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 from model import AudioCNN
 
-app = modal.App("audio-cnn")
+app = modal.App("audio-cnn-aib")
 
 image = (modal.Image.debian_slim()
          .pip_install_from_requirements("requirements.txt")
